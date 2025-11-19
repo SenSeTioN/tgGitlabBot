@@ -1,0 +1,20 @@
+{
+  "repositories": [
+    {
+      "id": "123",
+      "name": "backend-api",
+      "gitlab_url": "https://gitlab.com/company/backend-api",
+      "telegram_channel_id": "-1001234567890",
+      "branches": ["dev"],
+      "enabled": true
+    },
+    {
+      "id": "456",
+      "name": "frontend-app",
+      "gitlab_url": "https://gitlab.com/company/frontend-app",
+      "telegram_channel_id": "-1001234567890",
+      "branches": ["dev", "main"],
+      "enabled": true
+    }
+  ]
+}

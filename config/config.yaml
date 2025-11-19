@@ -1,0 +1,23 @@
+server:
+  port: ${SERVER_PORT}
+  read_timeout: 10s
+  write_timeout: 10s
+  shutdown_timeout: 10s
+  read_header_timeout: 5s
+
+gitlab:
+  webhook_secret: ${GITLAB_WEBHOOK_SECRET}
+
+rabbitmq:
+  url: ${RABBITMQ_URL}
+  exchange: gitlab.events
+  queue: gitlab.notifications
+  retry_delays: [5s, 15s, 45s, 135s]
+  max_retries: 4
+
+telegram:
+  bot_token: ${TELEGRAM_BOT_TOKEN}
+  timeout: 10s
+  max_retries: 3
+
+log_level: ${LOG_LEVEL}

@@ -1,0 +1,24 @@
+# Ignore files
+config/repositories.json
+
+# .env файлы для локальной разработки
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+
+# Build artifacts
+bin/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
