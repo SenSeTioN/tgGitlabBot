@@ -1,6 +1,19 @@
 # Ignore files
 config/repositories.json
 
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
 # .env файлы для локальной разработки
 .env
 .env.local
@@ -11,6 +24,9 @@ config/repositories.json
 
 # Build artifacts
 bin/
+node_modules
+/shared/api/bundles/
+/coverage/
 *.log
 
 # IDE
