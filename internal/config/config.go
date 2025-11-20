@@ -17,7 +17,6 @@ import (
 type Config struct {
 	Server       ServerConfig   `mapstructure:"server"`
 	GitLab       GitLabConfig   `mapstructure:"gitlab"`
-	RabbitMQ     RabbitMQConfig `mapstructure:"rabbitmq"`
 	Telegram     TelegramConfig `mapstructure:"telegram"`
 	LogLevel     string         `mapstructure:"log_level"`
 	Repositories []domain.Repository
@@ -33,14 +32,6 @@ type ServerConfig struct {
 
 type GitLabConfig struct {
 	WebhookSecret string `mapstructure:"webhook_secret"`
-}
-
-type RabbitMQConfig struct {
-	URL         string          `mapstructure:"url"`
-	Exchange    string          `mapstructure:"exchange"`
-	Queue       string          `mapstructure:"queue"`
-	RetryDelays []time.Duration `mapstructure:"retry_delays"`
-	MaxRetries  int             `mapstructure:"max_retries"`
 }
 
 type TelegramConfig struct {
@@ -123,10 +114,6 @@ func (c *Config) Validate() error {
 
 	if c.Telegram.BotToken == "" {
 		return fmt.Errorf("telegram bot token is required")
-	}
-
-	if c.RabbitMQ.URL == "" {
-		return fmt.Errorf("rabbitmq url is required")
 	}
 
 	if len(c.Repositories) == 0 {

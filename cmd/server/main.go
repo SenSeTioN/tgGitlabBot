@@ -11,9 +11,7 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
-	"github.com/go-chi/render"
+	chihttp "github.com/sensetion/tgGitlabBot/internal/adapters/http"
 	"github.com/sensetion/tgGitlabBot/internal/config"
 	"github.com/sensetion/tgGitlabBot/pkg/logger"
 )
@@ -27,19 +25,7 @@ func main() {
 	//TODO: delete in release
 	logger.PrettyStructurePrint("📋 Loaded configuration:", cfg)
 
-	// Инициализируем роутер Chi
-	r := chi.NewRouter()
-
-	// Добавляем middleware
-	r.Use(middleware.Logger)
-	r.Use(middleware.Recoverer)
-	r.Use(middleware.Timeout(cfg.Server.ReadTimeout))
-	r.Use(render.SetContentType(render.ContentTypeJSON))
-
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("welcome"))
-	})
-
+	r := chihttp.Init(cfg)
 	port := strconv.Itoa(cfg.Server.Port)
 
 	// Запускаем HTTP-сервер
