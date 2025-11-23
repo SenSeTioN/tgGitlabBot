@@ -8,12 +8,12 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/sensetion/tgGitlabBot/internal/adapters/http/response"
+	"github.com/sensetion/tgGitlabBot/internal/controller/http/response"
 )
 
 type HealthHandler struct {
 	telegramHealthCheck func() error
-	startTime           time.Time // Время запуска сервера
+	startTime           time.Time
 }
 
 func NewHealthHandler(telegramHealthCheck func() error) *HealthHandler {
@@ -23,7 +23,6 @@ func NewHealthHandler(telegramHealthCheck func() error) *HealthHandler {
 	}
 }
 
-// Health - простой liveness check (проверяет только что процесс жив)
 func (h *HealthHandler) Health(w http.ResponseWriter, r *http.Request) {
 	response.JSON(w, http.StatusOK, map[string]string{
 		"status": "ok",
@@ -85,7 +84,7 @@ func (h *HealthHandler) Ready(w http.ResponseWriter, r *http.Request) {
 		statusCode = http.StatusServiceUnavailable
 	}
 
-	response.JSON(w, statusCode, map[string]interface{}{
+	response.JSON(w, statusCode, map[string]any{
 		"status": status,
 		"checks": checks,
 	})

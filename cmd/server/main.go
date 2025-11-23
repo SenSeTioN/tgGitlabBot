@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"syscall"
 
-	chihttp "github.com/sensetion/tgGitlabBot/internal/adapters/http"
-	"github.com/sensetion/tgGitlabBot/internal/config"
+	chihttp "github.com/sensetion/tgGitlabBot/internal/controller/http"
+	"github.com/sensetion/tgGitlabBot/pkg/config"
 	"github.com/sensetion/tgGitlabBot/pkg/logger"
 )
 

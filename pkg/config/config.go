@@ -28,6 +28,7 @@ type ServerConfig struct {
 	WriteTimeout      time.Duration `mapstructure:"write_timeout"`
 	Shutdown          time.Duration `mapstructure:"shutdown_timeout"`
 	ReadHeaderTimeout time.Duration `mapstructure:"read_header_timeout"`
+	CompressSize      int           `mapstructure:"compress_size"`
 }
 
 type GitLabConfig struct {
