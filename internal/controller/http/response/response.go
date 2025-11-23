@@ -5,8 +5,7 @@ import (
 	"net/http"
 )
 
-// JSON отправляет JSON response
-func JSON(w http.ResponseWriter, statusCode int, data interface{}) {
+func JSON(w http.ResponseWriter, statusCode int, data any) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 
@@ -15,7 +14,6 @@ func JSON(w http.ResponseWriter, statusCode int, data interface{}) {
 	}
 }
 
-// Error отправляет JSON error response
 func Error(w http.ResponseWriter, statusCode int, message string) {
 	JSON(w, statusCode, map[string]string{
 		"error": message,
