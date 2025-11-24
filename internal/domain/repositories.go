@@ -2,8 +2,6 @@ package domain
 
 type Repository struct {
 	ID             string   `json:"id" mapstructure:"id"`
-	Name           string   `json:"name" mapstructure:"name"`
-	GitLabURL      string   `json:"gitlab_url" mapstructure:"gitlab_url"`
 	TelegramChatID string   `json:"telegram_channel_id" mapstructure:"telegram_channel_id"`
 	Branches       []string `json:"branches" mapstructure:"branches"`
 	Enabled        bool     `json:"enabled" mapstructure:"enabled"`
