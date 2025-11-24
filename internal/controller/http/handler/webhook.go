@@ -22,11 +22,8 @@ func NewWebhookHandler() *WebhookHandler {
 
 func (h *WebhookHandler) HandleGitLabPush(w http.ResponseWriter, r *http.Request) {
 	eventType := r.Header.Get("X-Gitlab-Event")
-	if eventType != "Push Hook" {
-		log.Printf("ℹ️ Ignoring event type: %s", eventType)
-		response.JSON(w, http.StatusOK, map[string]string{"status": "ignored"})
-		return
-	}
+
+	log.Printf("ℹ️ Event Type: %s", eventType)
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
