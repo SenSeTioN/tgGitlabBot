@@ -2,7 +2,6 @@ package domain
 
 import "time"
 
-// CommitEvent представляет событие коммита из GitLab webhook
 type CommitEvent struct {
 	RepositoryID   string
 	RepositoryName string
@@ -12,5 +11,6 @@ type CommitEvent struct {
 	CommitHash     string
 	CommitMsg      string
 	Timestamp      time.Time
+	WebURL         string
 	CommitURL      string
 }

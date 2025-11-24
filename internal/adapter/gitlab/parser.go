@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/sensetion/tgGitlabBot/internal/domain"
+	"github.com/sensetion/tgGitlabBot/pkg/logger"
 )
 
 type Parser struct{}
@@ -49,6 +50,8 @@ func (p *Parser) ParsePushEvent(payload []byte) (*domain.CommitEvent, error) {
 		return nil, fmt.Errorf("failed to unmarshal payload: %w", err)
 	}
 
+	logger.PrettyStructurePrint("Event BODY :", event)
+
 	if event.ObjectKind != "push" {
 		return nil, fmt.Errorf("unsupported object_kind: %s", event.ObjectKind)
 	}
@@ -70,6 +73,7 @@ func (p *Parser) ParsePushEvent(payload []byte) (*domain.CommitEvent, error) {
 		CommitHash:     lastCommit.ID,
 		CommitMsg:      lastCommit.Message,
 		Timestamp:      lastCommit.Timestamp,
+		WebURL:         event.Project.WebURL,
 		CommitURL:      lastCommit.URL,
 	}, nil
 }
